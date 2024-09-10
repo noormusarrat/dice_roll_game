@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ڈائس رول کہانی گیم👀🎲</title>
+  <style>
+    body {
+      font-family: 'Jameel noori nastaliq', sans-serif;
+      font-size: 80px;
+      text-align: center;
+      background: url('https://github.com/noormusarrat/dice_roll_game/blob/main/dice%20background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: rgb(127, 169, 247);
+      margin-top: 50px;
+    }
+    h1, h2 {
+      color: #f357bf;
+    }
+    .dice {
+      font-size: 150px;
+      cursor: pointer;
+      margin-top: 100px;
+      transition: transform 5s;
+    }
+    .rotate {
+      animation: spin 5s infinite;
+    }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+    #story {
+      margin-top: 30px;
+      padding: 20px;
+      font-family: 'Jameel noori nastaliq', sans-serif;
+      font-size: 80px;
+      background-color: rgba(0, 0, 0, 0.7);
+      border-radius: 10px;
+    }
+    img {
+      width: 600px;
+      margin-top: 150px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>کھیلیں اور اپنی کہانی بنائیں</h1>
+  
+  <!-- Dice Emoji to replace the button with animation -->
+  <span id="dice" class="dice" onclick="rollDice()">🎲</span>
+
+  <h2 id="diceResult">ڈائس رول کرنے کے لیے ڈائس پر کلک کریں...</h2>
+  <div id="story"></div>
+  <img id="characterImage" src="" alt="Character Image" />
+
+  <script>
+    function rollDice() {
+      // Get the dice element
+      const diceElement = document.getElementById('dice');
+      
+      // Create an Audio object for dice sound
+      const diceSound = new Audio('https://raw.githubusercontent.com/noormusarrat/my_dice_game/main/dice_roll.mp3');
+    
+      // Play the dice roll sound
+      diceSound.play();
+      
+      // Add the rotation animation
+      diceElement.classList.add('rotate');
+    
+      // After 1 second (when animation finishes), remove the animation and show result
+      setTimeout(() => {
+        diceElement.classList.remove('rotate');
+    
+        // Generate random dice number
+        let dice = Math.floor(Math.random() * 6) + 1;
+        document.getElementById('diceResult').innerText = "آپ کا " + dice + " نمبر آیا";
+    
+        let storyElement = "";
+        let imageUrl = "";
+    
+        // Dice 1: Character/Scene
+        switch (dice) {
+          case 1:
+            storyElement = " کردار: شیر منظر: چوہا کھیل رہا تھا مسئلہ: شکاری کے جال میں پھنس کیا";
+            imageUrl = "https://github.com/noormusarrat/dice_roll_game/blob/main/1%20story.jpg";
+            break;
+          case 2:
+            storyElement = "کردار: کچھوا منظر: دور میں حصہ لیا مسئلہ: خرگوش راستے میں سو کیا";
+            imageUrl = "https://github.com/noormusarrat/dice_roll_game/blob/main/2%20story.jpg";
+            break;
+          case 3:
+            storyElement = "کردار: تیتر اور بٹیر منظر: دونوں لڑ رہے تھے مسئلہ: ایک کی چونچ ایک کی دم";
+            imageUrl = "https://github.com/noormusarrat/dice_roll_game/blob/main/3%20story.jpg";
+            break;
+          case 4:
+            storyElement = "کردار: غریب آدمی منظر: سونے کا انڈا مسئلہ: اس نے لالچ میں مرغی کو پیٹ کاٹ دیا";
+            imageUrl = "https://github.com/noormusarrat/dice_roll_game/blob/main/4%20story.jpg";
+            break;
+          case 5:
+            storyElement = "کردار: کوّا منظر: جگ اور پانی مسئلہ: کوّا پانی تک پہنچ نہیں پایا";
+            imageUrl = "https://github.com/noormusarrat/dice_roll_game/blob/main/5%20%D8%B3%D8%AA%DB%81%D8%B1%DB%92.jpg";
+            break;
+          case 6:
+            storyElement = "کردار: مچھیرا اور مچھلی منظر: مچھلی انسان کی طرح بات کر رہی تھی مسئلہ: جادوگر نے شہزادی پر جادو کر دیا";
+            imageUrl = "https://github.com/noormusarrat/dice_roll_game/blob/main/6%20story.jpg";
+            break;
+        }
+    
+        document.getElementById('story').innerText = storyElement;
+        document.getElementById('characterImage').src = imageUrl;
+    
+      }, 1000); // Wait for 1 second before showing result
+    }
+  </script>
+
+</body>
+</html>
