@@ -7,7 +7,7 @@
   <style>
     body {
       font-family: 'Jameel noori nastaliq', sans-serif;
-      font-size: 80px;
+      font-size: 2.5vw; /* Responsive font size */
       text-align: center;
       background: url('https://raw.githubusercontent.com/noormusarrat/dice_roll_game/main/dice_background.jpg') no-repeat center center fixed;
       background-size: cover;
@@ -18,13 +18,13 @@
       color: #f357bf;
     }
     .dice {
-      font-size: 150px;
+      font-size: 8vw; /* Responsive dice size */
       cursor: pointer;
       margin-top: 100px;
-      transition: transform 5s;
+      transition: transform 1s;
     }
     .rotate {
-      animation: spin 5s infinite;
+      animation: spin 1s infinite;
     }
     @keyframes spin {
       0% { transform: rotate(0deg); }
@@ -34,13 +34,13 @@
       margin-top: 30px;
       padding: 20px;
       font-family: 'Jameel noori nastaliq', sans-serif;
-      font-size: 80px;
+      font-size: 2.5vw; /* Responsive story text */
       background-color: rgba(0, 0, 0, 0.7);
       border-radius: 10px;
     }
     img {
-      width: 600px;
-      margin-top: 150px;
+      width: 50vw; /* Responsive image size */
+      margin-top: 50px;
     }
   </style>
 </head>
@@ -69,8 +69,8 @@
       // Add the rotation animation
       diceElement.classList.add('rotate');
     
-      // After 1 second (when animation finishes), remove the animation and show result
-      setTimeout(() => {
+      // When sound ends, remove animation and show result
+      diceSound.onended = function() {
         diceElement.classList.remove('rotate');
     
         // Generate random dice number
@@ -83,11 +83,11 @@
         // Dice 1: Character/Scene
         switch (dice) {
           case 1:
-            storyElement = " کردار: شیر منظر: چوہا کھیل رہا تھا مسئلہ: شکاری کے جال میں پھنس کیا";
+            storyElement = " کردار: شیر منظر: چوہا کھیل رہا تھا مسئلہ: شکاری کے جال میں پھنس گیا";
             imageUrl = "https://raw.githubusercontent.com/noormusarrat/dice_roll_game/main/1_story.jpg";
             break;
           case 2:
-            storyElement = "کردار: کچھوا منظر: دوڑ میں حصہ لیا مسئلہ: خرگوش راستے میں سو کیا";
+            storyElement = "کردار: کچھوا منظر: دوڑ میں حصہ لیا مسئلہ: خرگوش راستے میں سو گیا";
             imageUrl = "https://raw.githubusercontent.com/noormusarrat/dice_roll_game/main/2_story.jpg";
             break;
           case 3:
@@ -110,8 +110,7 @@
     
         document.getElementById('story').innerText = storyElement;
         document.getElementById('characterImage').src = imageUrl;
-    
-      }, 1000); // Wait for 1 second before showing result
+      };
     }
   </script>
 
